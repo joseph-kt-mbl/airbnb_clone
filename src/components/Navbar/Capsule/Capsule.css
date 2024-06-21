@@ -1,0 +1,26 @@
+.capsule__button{
+    border-radius: 30px;
+    cursor: pointer;
+    height: 100%;
+    padding: .75rem 1rem;
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.capsule__button p{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 12px;
+    font-weight: 400;
+}
+
+.bold{
+    font-weight: 900;
+    color: red;
+}
+.capsule__button__opened{
+    justify-content: flex-start!important;
+}

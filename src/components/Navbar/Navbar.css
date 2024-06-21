@@ -11,3 +11,10 @@
 .visible{
     display: flex!important;
 }
+.min-h-30vh{
+    min-height: 30vh;
+}
+
+.pb20{
+    padding-bottom: 20px;
+}
