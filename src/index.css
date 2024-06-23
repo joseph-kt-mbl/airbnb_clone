@@ -63,17 +63,30 @@ button {
 .w400px{
   width: 400px!important;
 }
-.w280px{
-  width: 280px;
+.w100px{
+  width: 100px;
+}
+.w130px{
+  width: 130px;
+}
+.w118px{
+  width: 118px;
+}
+
+.w270px{
+  width: 270px;
 }
 .padleft2rem{
   padding-left: 2rem;
 }
+.pad-r-2rem{
+  padding-right: 2rem;
+}
 .w-fit-content{
   width: fit-content;
 }
-.min-w-800px{
-  min-width: 800px;
+.min-w-750px{
+  min-width: 750px;
 }
 .justify_center{
   display: flex;

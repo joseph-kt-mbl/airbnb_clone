@@ -5,8 +5,9 @@
     padding: .75rem 1rem;
     display: grid;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
     cursor: pointer;
+    border-radius: 30px;
 }
 
 .capsule__button p{
@@ -17,10 +18,10 @@
     font-weight: 400;
 }
 
-.bold{
-    font-weight: 900;
-    color: red;
-}
 .capsule__button__opened{
     justify-content: flex-start!important;
+}
+
+.capsule__button__opened:hover{
+    background-color: rgb(230, 231, 231);
 }

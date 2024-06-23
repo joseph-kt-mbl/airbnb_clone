@@ -1,13 +1,12 @@
-import React, { useState , useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import styles from './Navbar.module.css';
 import airbnbLogo from 'C:/Users/user/Desktop/airbnb_clone/public/airbnb_logo.png';
+import airbnbLogoResponsive from 'C:/Users/user/Desktop/airbnb_clone/public/airbnb_logo_responsive.png';
 import profile from './../../../public/profile.png';
 import language from './../../../public/internet.png';
 import Capsule from './Capsule/Capsule';
 import './../../../public/icons.css';
-
-
 
 const NavContainer = styled.section`
   padding: 0 1rem;
@@ -18,17 +17,21 @@ const NavContainer = styled.section`
   top: 0;
   left: 0;
   z-index: 9999;
-  height: ${({ grow }) => (grow===0 ? '25vh' : '13vh')};
-  padding-bottom: ${({ grow }) => (grow===0 ? '1.25rem' : '1rem')};
+  height: ${({ grow }) => (grow === 0 ? '25vh' : '13vh')};
+  padding-bottom: ${({ grow }) => (grow === 0 ? '1.25rem' : '1rem')};
+  border-bottom: 1px solid #d4d4d4;
 `;
 
 const Logo = styled.div`
-  background-image: url(${airbnbLogo});
   background-repeat: no-repeat;
   background-size: cover;
   width: 125px;
   height: 70px;
   cursor: pointer;
+  @media (max-width: 800px) {
+      width: 40px;
+      height:70px;
+    }
 `;
 
 const Controls = styled.div`
@@ -134,75 +137,90 @@ const InnerImage = styled.div`
   background-size: cover;
 `;
 
-
 const OpenedCapsule = styled(Capsule)`
     position: absolute;
     top: 105%;
-    left:50%;
+    left: 50%;
     transform: translateX(-50%);
 `;
 
 const ClosedCapsule = styled(Capsule)`
     position: absolute;
     top: 30%;
-    left:50%;
-    transform: translate(-50%,-50%);
+    left: calc(50% + 1rem);
+    transform: translate(-50%, -50%);
+    @media (max-width: 800px) {
+      left: 70px!important;
+      transform: translateX(0);
+    }
 `;
 
-
-
 const Navbar = (props) => {
-    const [dropDown, setDropDown] = useState(false);
-    const [scrollTop, setScrollTop] = useState(0);
+  const [dropDown, setDropDown] = useState(false);
+  const [scrollTop, setScrollTop] = useState(0);
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
-    useEffect(() => {
+  useEffect(() => {
     const handleScroll = () => {
       const currentScrollTop = window.scrollY || document.documentElement.scrollTop;
       setScrollTop(currentScrollTop);
     };
 
-    // Add the event listener
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth);
+    };
+
     window.addEventListener('scroll', handleScroll);
+    window.addEventListener('resize', handleResize);
 
-        // Clean up the event listener on component unmount
-        return () => {
-        window.removeEventListener('scroll', handleScroll);
-        };
-    }, []);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
 
-    return (
-        <NavContainer grow={scrollTop}>
-            <nav className={`${styles.navbar}`}>
-                <a href=""><Logo /></a>              
-                
-                {scrollTop !== 0 ? <ClosedCapsule/> : <OpenedCapsule/>}
+  return (
+    <NavContainer grow={scrollTop}>
+      <nav className={`${styles.navbar}`}>
+        <a href="">
+        {/* background-image:  */}
+          <Logo 
+            style={
+              {
+                backgroundImage : `url(${windowWidth < 800 ? airbnbLogoResponsive : airbnbLogo})`
+              }
+            }
+          />
+        </a>
 
-                <Controls>
-                    <Button>Airbnb your home</Button>
-                    <Button>
-                        <InnerImage style={{width:'20px',height:'20px',backgroundImage:`url(${language})`}}/>
-                    </Button>
-                    <ProfileBar onClick={() => setDropDown(!dropDown)}>
-                        <Icon style={{fontSize:'20px',height:'100%'}}> <i className='ico ico_burger_bar'/> </Icon>
-                        <Icon>
-                            <InnerImage/>
-                        </Icon>
+        {scrollTop !== 0 ? <ClosedCapsule/> : <OpenedCapsule />}
 
-                        <DropDownProfileBar visible={dropDown}>
-                            {DropDownData.map((item, index) => (
-                                <React.Fragment key={index}>
-                                    {index === 2 && <Line />}
-                                    <DropDownItem>
-                                        {item}
-                                    </DropDownItem>
-                                </React.Fragment>
-                            ))}
-                        </DropDownProfileBar>
-                    </ProfileBar>
-                </Controls>
-            </nav>
-        </NavContainer>
-    );
+        <Controls>
+          <Button>Airbnb your home</Button>
+          <Button>
+            <InnerImage style={{ width: '20px', height: '20px', backgroundImage: `url(${language})` }} />
+          </Button>
+          <ProfileBar onClick={() => setDropDown(!dropDown)}>
+            <Icon style={{ fontSize: '20px', height: '100%' }}> <i className='ico ico_burger_bar' /> </Icon>
+            <Icon>
+              <InnerImage />
+            </Icon>
+
+            <DropDownProfileBar visible={dropDown}>
+              {DropDownData.map((item, index) => (
+                <React.Fragment key={index}>
+                  {index === 2 && <Line />}
+                  <DropDownItem>
+                    {item}
+                  </DropDownItem>
+                </React.Fragment>
+              ))}
+            </DropDownProfileBar>
+          </ProfileBar>
+        </Controls>
+      </nav>
+    </NavContainer>
+  );
 };
 
 export default Navbar;

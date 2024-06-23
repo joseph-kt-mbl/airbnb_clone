@@ -7,9 +7,8 @@ import { categories, categoriesItems, data, footer_cols } from './../require.js'
 
 const Cards = styled.section`
   display: flex;
-  gap: 1rem;
-  padding: 0.5rem;
-  border: 1px solid gray;
+  gap: .75rem;
+  padding: 0 .5rem;
   border-radius: 0.35rem;
   margin: 1rem 0.25rem;
   align-items: center;

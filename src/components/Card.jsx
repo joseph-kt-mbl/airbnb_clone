@@ -6,7 +6,7 @@ const CardContainer = styled.section`
     display: flex;
     flex-direction: column;
     width: ${props => props.width}px;
-    height: 360px;
+    height: ${props => props.width+110}px;
     margin: 0.5rem;
     color: #1e1e1e;
     border-radius: 0.35rem;
@@ -36,7 +36,7 @@ const Up = styled.span`
 const ImagesContainer = styled.div`
     display: flex;
     width: 100%;
-    height: 250px;
+    height: ${props => props.height}px;
     flex-wrap: nowrap;
     overflow-x: scroll;
     overflow-y: hidden;
@@ -55,7 +55,7 @@ const ImagesContainer = styled.div`
 const ImageDiv = styled.div`
     flex: 0 0 auto;
     width: ${props => props.width}px;
-    height: 250px;
+    height: ${props => props.width}px;
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
@@ -65,7 +65,7 @@ const ImageDiv = styled.div`
 const ScrollButton = styled.button`
     position: absolute;
     padding-top: 0.2rem;
-    top: 125px;
+    top: ${props => props.width / 2}px;
     transform: translateY(-50%);
     background: rgba(255, 255, 255, 0.7);
     color: #2d2d2d;
@@ -122,13 +122,13 @@ const Card = (props) => {
         const updateWidth = () => {
             const currentWidth = window.innerWidth;
             if (currentWidth <= 665 ) {
-                setWidth(300);
-            } 
-            else if(currentWidth <= 725){
-                setWidth(220)
+                setWidth(250);
+            }
+            else if(currentWidth <= 785){
+                setWidth(300)
             }
             else if(currentWidth <= 955){
-                setWidth(300);
+                setWidth(350);
             }
             else {
                 setWidth(270);
@@ -149,7 +149,7 @@ const Card = (props) => {
 
     return (
         <CardContainer width={width} className={styles.resposive_width}>
-            <ImagesContainer ref={containerRef}>
+            <ImagesContainer height={width} ref={containerRef}>
                 {props.images && props.images.map((imgPath, index) => (
                     <ImageDiv
                         width={width}
@@ -159,10 +159,10 @@ const Card = (props) => {
                     />
                 ))}
             </ImagesContainer>
-            {!atStart && <LeftButton onClick={() => scroll('left')} className={styles.center}>
+            {!atStart && <LeftButton width={width} onClick={() => scroll('left')} className={styles.center}>
                 <i className={`${styles.ico} ${styles.to_left_arrow_ico}`}></i>
             </LeftButton>}
-            {!atEnd && <RightButton onClick={() => scroll('right')} className={styles.center}>
+            {!atEnd && <RightButton width={width} onClick={() => scroll('right')} className={styles.center}>
                 <i className={`${styles.ico} ${styles.to_right_arrow_ico}`}></i>
             </RightButton>}
             <h3 className={`${styles.title} ${styles.ml_dot20}`}>{props.title}</h3>
