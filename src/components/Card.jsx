@@ -100,12 +100,13 @@ const SliderDots = styled.div`
 `;
 
 const Dot = styled.div`
-    width: 6px;
-    height: 6px;
+    width: ${props => props.size}px;
+    height: ${props => props.size}px;
     margin: 0 4px;
-    background-color: ${props => (props.active ? "#fff" : "#a0a0a0")};
+    background-color: ${props => (props.active ? "aliceblue" : "#898989e0")};
     border-radius: 50%;
     cursor: pointer;
+    transition: width 0.3s, height 0.3s;
 `;
 
 const Card = (props) => {
@@ -167,6 +168,38 @@ const Card = (props) => {
         }
     };
 
+    const getDotSize = (index) => {
+        const distance = Math.abs(index - activeIndex);
+        if (distance < 2) return 6;
+        if (distance === 2) return 5;
+        return 4;
+    };
+
+    const getVisibleDots = () => {
+        if (!props.images) return [];
+        const totalImages = props.images.length;
+        const dotsToShow = 5;
+        let start = 0;
+        let end = dotsToShow;
+
+        if (totalImages > dotsToShow) {
+            if (activeIndex < 2) {
+                start = 0;
+                end = dotsToShow;
+            } else if (activeIndex > totalImages - 3) {
+                start = totalImages - dotsToShow;
+                end = totalImages;
+            } else {
+                start = activeIndex - 2;
+                end = activeIndex + 3;
+            }
+        } else {
+            end = totalImages;
+        }
+
+        return Array.from({ length: end - start }, (_, i) => start + i);
+    };
+
     return (
         <CardContainer width={width} className={styles.resposive_width}>
             <ImagesContainer height={width} ref={containerRef}>
@@ -186,9 +219,10 @@ const Card = (props) => {
                 <i className={`${styles.ico} ${styles.to_right_arrow_ico}`}></i>
             </RightButton>}
             <SliderDots>
-                {props.images && props.images.map((_, index) => (
+                {getVisibleDots().map((index) => (
                     <Dot
                         key={index}
+                        size={getDotSize(index)}
                         active={index === activeIndex}
                         onClick={() => {
                             if (containerRef.current) {

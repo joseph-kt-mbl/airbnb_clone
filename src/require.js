@@ -26,6 +26,11 @@ export const data = [
             image2,
             image3,
             image4,
+            image5,
+            image1,
+            image2,
+            image3,
+            image4,
             image5
         ],
         title:'Wake up in the Musée d’Orsay',
