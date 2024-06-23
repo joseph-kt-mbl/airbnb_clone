@@ -150,7 +150,7 @@ const ClosedCapsule = styled(Capsule)`
     left: calc(50% + 1rem);
     transform: translate(-50%, -50%);
     @media (max-width: 800px) {
-      left: 70px!important;
+      left: 40px!important;
       transform: translateX(0);
     }
 `;

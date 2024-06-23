@@ -49,18 +49,30 @@ const ClosedCapsuleContainer = ({ className }) =>{
     };
   }, []);
 
+  const WDTH = ['30%','30%','40%'];
+
 
     return(
     <CapsuleContainer 
       className={className}
+      style={{
+        width:'360px',
+        minWidth:'280px',
+        maxWidth:'320px'
+      }}
       initial={{ y: 20, opacity: 0, translateX: `-${windowWidth < 800 ? 0 : 50}%` }}
-      animate={{ y: 0, opacity: 1, width: '354px', translateX: `-${windowWidth < 800 ? 0 : 50}%` }}
+      animate={{ y: 0, opacity: 1, width: '360px', translateX: `-${windowWidth < 800 ? 0 : 50}%` }}
       exit={{ y: 20, opacity: 0, translateX: `-${windowWidth < 800 ? 0 : 50}%` }}
       transition={{ duration: 0.5 }}
     >
       {['Anywhere', 'Any week', 'Add guests'].map((item, index) => (
         <React.Fragment key={index}>
-          <div className={`capsule__button ${index === 2 ? 'w130px' : (index === 1 ? 'w118px' : '')}`}>
+          <div className={`capsule__button`}
+          style={
+            {
+              width:WDTH[index]
+            }
+          }>
             <p className={`${index < 2 ? 'poppins-medium' : 'poppins-light'}`}>{item}</p>
           </div>
           {index < 2 && <VerticalLine />}
@@ -73,33 +85,50 @@ const ClosedCapsuleContainer = ({ className }) =>{
   )
 };
 
-const OpenedCapsuleContainer = ({ className }) => (
-  <CapsuleContainer
-    className={`${className} w-fit-content min-w-750px`}
-    initial={{ y: -20, opacity: 0, translateX: '-50%', translateY: '-50%' }}
-    animate={{ y: 0, opacity: 1, width: '750px', translateX: '-50%', translateY: '-50%' }}
-    exit={{ y: -20, opacity: 0, translateX: '-50%', translateY: '-50%' }}
-    transition={{ duration: 0.5 }}
-  >
-    {[
-      { title: 'Where', subtitle: 'Search destinations' },
-      { title: 'Check in', subtitle: 'Add dates' },
-      { title: 'Check out', subtitle: 'Add dates' },
-      { title: 'Who', subtitle: 'Add guests' }
-    ].map((item, index) => (
-      <React.Fragment key={index}>
-        <div className={`capsule__button capsule__button__opened ${index === 0 || index===3 ? 'w270px padleft2rem' : 'w100px'}`}>
-          <p className="poppins-medium">{item.title}</p>
-          <p className="poppins-light gray">{item.subtitle}</p>
-        </div>
-        {index < 3 && <VerticalLine className="min-h-2rem" />}
-      </React.Fragment>
-    ))}
-    <SearchButton className="grid center square45">
-      <i className="ico search_ico"></i>
-    </SearchButton>
-  </CapsuleContainer>
-);
+const OpenedCapsuleContainer = ({ className }) => {
+
+  return(
+    <CapsuleContainer
+      className={`${className}`}
+      style={{
+        width:`calc(100% - 4rem)`,
+        minWidth:'600px',
+        maxWidth:'750px'
+      }}
+      initial={{ y: -20, opacity: 0, translateX: '-50%', translateY: '-50%' }}
+      animate={{ y: 0, opacity: 1, width: 'calc(100% - 4rem)', translateX: '-50%', translateY: '-50%' }}
+      exit={{ y: -20, opacity: 0, translateX: '-50%', translateY: '-50%' }}
+      transition={{ duration: 0.5 }}
+    >
+      {[
+        { title: 'Where', subtitle: 'Search destinations' },
+        { title: 'Check in', subtitle: 'Add dates' },
+        { title: 'Check out', subtitle: 'Add dates' },
+        { title: 'Who', subtitle: 'Add guests' }
+      ].map((item, index) => (
+        <React.Fragment key={index}>
+          <div className={`capsule__button capsule__button__opened 
+          ${index === 0 || index===3 ? `padleft2rem` : ''}`}
+            style={index === 0 || index===3 ?{
+              width:'35%',
+              minWidth:'180px'
+            }:{
+              width:'15%',
+              minWidth:'100px'
+            }}
+          >
+            <p className="poppins-medium">{item.title}</p>
+            <p className="poppins-light gray">{item.subtitle}</p>
+          </div>
+          {index < 3 && <VerticalLine className="min-h-2rem" />}
+        </React.Fragment>
+      ))}
+      <SearchButton className="grid center square45">
+        <i className="ico search_ico"></i>
+      </SearchButton>
+    </CapsuleContainer>
+  )
+};
 
 const Capsule = ({ className }) => {
   const [scrollTop, setScrollTop] = useState(0);

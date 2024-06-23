@@ -6,7 +6,7 @@ const CardContainer = styled.section`
     display: flex;
     flex-direction: column;
     width: ${props => props.width}px;
-    height: ${props => props.width+110}px;
+    height: ${props => props.width + 110}px;
     margin: 0.5rem;
     color: #1e1e1e;
     border-radius: 0.35rem;
@@ -90,17 +90,37 @@ const RightButton = styled(ScrollButton)`
     right: 0.5rem;
 `;
 
+const SliderDots = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    bottom: 120px;
+    width: 100%;
+`;
+
+const Dot = styled.div`
+    width: 6px;
+    height: 6px;
+    margin: 0 4px;
+    background-color: ${props => (props.active ? "#fff" : "#a0a0a0")};
+    border-radius: 50%;
+    cursor: pointer;
+`;
+
 const Card = (props) => {
     const containerRef = useRef(null);
     const [atStart, setAtStart] = useState(true);
     const [atEnd, setAtEnd] = useState(false);
     const [width, setWidth] = useState(270);
+    const [activeIndex, setActiveIndex] = useState(0);
 
     const checkScrollPosition = () => {
         if (containerRef.current) {
             const { scrollLeft, scrollWidth, clientWidth } = containerRef.current;
             setAtStart(scrollLeft === 0);
             setAtEnd(scrollLeft + clientWidth === scrollWidth);
+            setActiveIndex(Math.round(scrollLeft / width));
         }
     };
 
@@ -116,18 +136,18 @@ const Card = (props) => {
                 container.removeEventListener('scroll', handleScroll);
             }
         };
-    }, []);
+    }, [width]);
 
     useEffect(() => {
         const updateWidth = () => {
             const currentWidth = window.innerWidth;
-            if (currentWidth <= 665 ) {
+            if (currentWidth <= 665) {
                 setWidth(250);
             }
-            else if(currentWidth <= 785){
-                setWidth(300)
+            else if (currentWidth <= 785) {
+                setWidth(300);
             }
-            else if(currentWidth <= 955){
+            else if (currentWidth <= 955) {
                 setWidth(350);
             }
             else {
@@ -165,6 +185,22 @@ const Card = (props) => {
             {!atEnd && <RightButton width={width} onClick={() => scroll('right')} className={styles.center}>
                 <i className={`${styles.ico} ${styles.to_right_arrow_ico}`}></i>
             </RightButton>}
+            <SliderDots>
+                {props.images && props.images.map((_, index) => (
+                    <Dot
+                        key={index}
+                        active={index === activeIndex}
+                        onClick={() => {
+                            if (containerRef.current) {
+                                containerRef.current.scrollTo({
+                                    left: index * width,
+                                    behavior: 'smooth'
+                                });
+                            }
+                        }}
+                    />
+                ))}
+            </SliderDots>
             <h3 className={`${styles.title} ${styles.ml_dot20}`}>{props.title}</h3>
             <p className={`${styles.hostedBy} ${styles.ml_dot20}`}>{props.hostedBy}</p>
             <h4 className={`${styles.sub_title} ${styles.ml_dot20}`}>{props.subTitle}</h4>
