@@ -234,10 +234,10 @@ const footerBottomRightContent = () =>{
                             </Button>
                             <div className={styles.social_icons}>
                                 <div className='social_icon_div center square1_4em radius4 scale1_05'>
-                                    <i className='ico facebook-ico square1_4em' />
+                                    <i className='ico facebook-ico square1_4em ' />
                                 </div>
 
-                                <div className='social_icon_div center square1_4em radius4'>
+                                <div className='social_icon_div center square1_4em radius4 '>
                                     <i className='ico X-ico font20 square1_2em' />
                                 </div>
                                 <div className='social_icon_div center square1_4em radius4 scale0_95'>

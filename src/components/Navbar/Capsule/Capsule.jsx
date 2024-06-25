@@ -60,9 +60,9 @@ const ClosedCapsuleContainer = ({ className }) =>{
         minWidth:'280px',
         maxWidth:'320px'
       }}
-      initial={{ y: 20, opacity: 0, translateX: `-${windowWidth < 800 ? 0 : 50}%` }}
-      animate={{ y: 0, opacity: 1, width: '360px', translateX: `-${windowWidth < 800 ? 0 : 50}%` }}
-      exit={{ y: 20, opacity: 0, translateX: `-${windowWidth < 800 ? 0 : 50}%` }}
+      initial={{ y: 20, opacity: 0, translateX: `-${windowWidth < 900 ? 0 : 50}%` }}
+      animate={{ y: 0, opacity: 1, width: '360px', translateX: `-${windowWidth < 900 ? 0 : 50}%` }}
+      exit={{ y: 20, opacity: 0, translateX: `-${windowWidth < 900 ? 0 : 50}%` }}
       transition={{ duration: 0.5 }}
     >
       {['Anywhere', 'Any week', 'Add guests'].map((item, index) => (

@@ -2,6 +2,8 @@ import styled from "styled-components";
 import Card from './Card';
 import Footer from './Footer.jsx';
 import MarginTop from './MarginTop.jsx'
+import CategoryList from './CategoryList.jsx';
+
 import { categories, categoriesItems, data, footer_cols } from './../require.js';
 
 
@@ -60,6 +62,7 @@ const MainContent = ()=>{
     return(
     <>
     <MarginTop/>
+    <CategoryList/>
         <Main>
           
 

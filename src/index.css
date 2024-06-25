@@ -7,7 +7,7 @@
 
   color-scheme: light dark;
   color: #242424;
-  background-color: rgba(255, 255, 255, 0.966);
+  background-color: rgb(255, 255, 255);
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -170,4 +170,14 @@ button {
 .square45{
   width: 45px!important;
   height: 45px!important;
+}
+.social_icon_div{
+  background-color: #1e1e1e;
+  height: 100%;
+  width: 25%;
+  cursor: pointer;
+}
+
+.social_icon_div:hover i{
+  color: #fff;
 }

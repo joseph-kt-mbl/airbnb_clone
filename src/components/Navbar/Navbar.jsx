@@ -28,7 +28,7 @@ const Logo = styled.div`
   width: 125px;
   height: 70px;
   cursor: pointer;
-  @media (max-width: 800px) {
+  @media (max-width: 900px) {
       width: 40px;
       height:70px;
     }
@@ -89,9 +89,8 @@ const DropDownProfileBar = styled.ul`
   justify-content: center;
   background-color: #fff;
   padding: 0.5rem 0;
-  width: 240px;
+  width: 220px;
   border-radius: 12px;
-  border: 1px solid #1e1e1e;
   z-index: 1000;
   transform: translateY(0.5rem);
   box-shadow: 10px 1px 15px -6px rgba(140, 137, 140, 1),
@@ -149,8 +148,8 @@ const ClosedCapsule = styled(Capsule)`
     top: 30%;
     left: calc(50% + 1rem);
     transform: translate(-50%, -50%);
-    @media (max-width: 800px) {
-      left: 40px!important;
+    @media (max-width: 900px) {
+      left: 50px!important;
       transform: translateX(0);
     }
 `;
@@ -187,7 +186,7 @@ const Navbar = (props) => {
           <Logo 
             style={
               {
-                backgroundImage : `url(${windowWidth < 800 ? airbnbLogoResponsive : airbnbLogo})`
+                backgroundImage : `url(${windowWidth < 900 ? airbnbLogoResponsive : airbnbLogo})`
               }
             }
           />
