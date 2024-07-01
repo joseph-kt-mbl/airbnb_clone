@@ -9,7 +9,7 @@ const CardContainer = styled.section`
     height: ${props => props.width + 110}px;
     margin: 0.5rem;
     color: #1e1e1e;
-    border-radius: 0.35rem;
+    border-radius: 0.5rem;
     position: relative;
     transition: hover 0.5s;
     &:hover button {
@@ -49,7 +49,7 @@ const ImagesContainer = styled.div`
     &::-webkit-scrollbar {
         display: none;
     }
-    border-radius: 0.35rem;
+    border-radius: 0.5rem;
 `;
 
 const ImageDiv = styled.div`
@@ -59,7 +59,7 @@ const ImageDiv = styled.div`
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
-    border-radius: 0.35rem;
+    border-radius: 0.5rem;
 `;
 
 const ScrollButton = styled.button`

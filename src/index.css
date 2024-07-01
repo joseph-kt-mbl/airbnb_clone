@@ -181,3 +181,7 @@ button {
 .social_icon_div:hover i{
   color: #fff;
 }
+.square2em{
+  width: 2em!important;
+  height: 2em!important;
+}

@@ -530,3 +530,29 @@ export const categoriesItems =
 export const DropDownProfile = [
     'Sign up','Log in','Gift cards','Airbnb your home','Help Center'
 ]
+
+export const CategoryListIconsClasses = [
+    { label: 'Icons', icon: 'ico_icons' },
+    { label: 'Amazing views', icon: 'ico_amazing_views' },
+    { label: 'Trending', icon: 'ico_trending' },
+    { label: 'Rooms', icon: 'ico_rooms' },
+    { label: 'Beach', icon: 'ico_beach' },
+    { label: 'Caves', icon: 'ico_caves' },
+    { label: 'Amazing Pools', icon: 'ico_amazing_pools' },
+    { label: 'BeachFront', icon: 'ico_beachfront' },
+    { label: 'Islands', icon: 'ico_islands' },
+    { label: 'Mansions', icon: 'ico_mansions' },
+    { label: 'LakeFront', icon: 'ico_lakefront' },
+    { label: 'Skiing', icon: 'ico_skiing' },
+    { label: 'Luxe', icon: 'ico_luxe' },
+    { label: 'Cabins', icon: 'ico_cabins' },
+    { label: 'New', icon: 'ico_new' },
+    { label: 'Farmes', icon: 'ico_farmes' },
+    { label: 'Countryside', icon: 'ico_countryside' },
+    { label: 'OMG!', icon: 'ico_omg' },
+    { label: 'Tiny Homes', icon: 'ico_tiny_homes' },
+    { label: 'Camping', icon: 'ico_camping' },
+    { label: 'Treehouses', icon: 'ico_treehouses' },
+    { label: 'Top Of The World', icon: 'ico_top_world' },
+    { label: 'Bed and Breakfast', icon: 'ico_bed_breakfast' },
+]
