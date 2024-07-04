@@ -556,3 +556,25 @@ export const CategoryListIconsClasses = [
     { label: 'Top Of The World', icon: 'ico_top_world' },
     { label: 'Bed and Breakfast', icon: 'ico_bed_breakfast' },
 ]
+
+
+
+export function permuteImages(images) {
+  let permutations = [];
+
+  for (let i = 0; i < images.length; i++) {
+    let permutedImages = [...images.slice(i), ...images.slice(0, i)];
+    permutations.push(permutedImages);
+  }
+
+  return permutations;
+}
+
+
+export function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array;
+  }

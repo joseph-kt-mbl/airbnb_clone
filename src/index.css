@@ -185,3 +185,17 @@ button {
   width: 2em!important;
   height: 2em!important;
 }
+.sticky{
+  position: sticky;
+  left: 0;
+}
+.zi999{
+  z-index: 999;
+}
+
+.top25vh{
+  top: 25vh;
+}
+.top13vh{
+  top:12vh
+}

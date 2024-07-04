@@ -12,7 +12,6 @@ const NavContainer = styled.section`
   padding: 0 1rem;
   background-color: #fff;
   width: 100%;
-  margin-bottom: 1.5rem;
   position: fixed;
   top: 0;
   left: 0;

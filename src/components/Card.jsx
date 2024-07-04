@@ -1,6 +1,7 @@
 import React, { useRef, useState, useEffect } from "react";
 import styled from "styled-components";
 import styles from './Card.module.css';
+import Additional_Components from "./additional_components/additional";
 
 const CardContainer = styled.section`
     display: flex;
@@ -15,7 +16,6 @@ const CardContainer = styled.section`
     &:hover button {
         display: block;
     }
-    padding-bottom: 0.5rem;
 `;
 
 const Up = styled.span`
@@ -109,7 +109,7 @@ const Dot = styled.div`
     transition: width 0.3s, height 0.3s;
 `;
 
-const Card = (props) => {
+const Card = ({images,title,subTitle,hostedBy,children}) => {
     const containerRef = useRef(null);
     const [atStart, setAtStart] = useState(true);
     const [atEnd, setAtEnd] = useState(false);
@@ -144,14 +144,11 @@ const Card = (props) => {
             const currentWidth = window.innerWidth;
             if (currentWidth <= 665) {
                 setWidth(250);
-            }
-            else if (currentWidth <= 785) {
+            } else if (currentWidth <= 785) {
                 setWidth(300);
-            }
-            else if (currentWidth <= 955) {
+            } else if (currentWidth <= 955) {
                 setWidth(350);
-            }
-            else {
+            } else {
                 setWidth(270);
             }
         };
@@ -176,8 +173,8 @@ const Card = (props) => {
     };
 
     const getVisibleDots = () => {
-        if (!props.images) return [];
-        const totalImages = props.images.length;
+        if (!images) return [];
+        const totalImages = images.length;
         const dotsToShow = 5;
         let start = 0;
         let end = dotsToShow;
@@ -201,23 +198,28 @@ const Card = (props) => {
     };
 
     return (
-        <CardContainer width={width} className={styles.resposive_width}>
+        <CardContainer width={width} className={styles.responsive_width}>
+            {children}
             <ImagesContainer height={width} ref={containerRef}>
-                {props.images && props.images.map((imgPath, index) => (
+                {images && images.map((imgPath, index) => (
                     <ImageDiv
                         width={width}
-                        className={styles.resposive_width}
+                        className={styles.responsive_width}
                         style={{ backgroundImage: `url(${imgPath})` }}
                         key={index}
                     />
                 ))}
             </ImagesContainer>
-            {!atStart && <LeftButton width={width} onClick={() => scroll('left')} className={styles.center}>
-                <i className={`${styles.ico} ${styles.to_left_arrow_ico}`}></i>
-            </LeftButton>}
-            {!atEnd && <RightButton width={width} onClick={() => scroll('right')} className={styles.center}>
-                <i className={`${styles.ico} ${styles.to_right_arrow_ico}`}></i>
-            </RightButton>}
+            {!atStart && (
+                <LeftButton width={width} onClick={() => scroll('left')} className={styles.center} aria-label="Scroll left">
+                    <i className={`${styles.ico} ${styles.to_left_arrow_ico}`}></i>
+                </LeftButton>
+            )}
+            {!atEnd && (
+                <RightButton width={width} onClick={() => scroll('right')} className={styles.center} aria-label="Scroll right">
+                    <i className={`${styles.ico} ${styles.to_right_arrow_ico}`}></i>
+                </RightButton>
+            )}
             <SliderDots>
                 {getVisibleDots().map((index) => (
                     <Dot
@@ -232,13 +234,14 @@ const Card = (props) => {
                                 });
                             }
                         }}
+                        aria-label={`Go to image ${index + 1}`}
                     />
                 ))}
             </SliderDots>
-            <h3 className={`${styles.title} ${styles.ml_dot20}`}>{props.title}</h3>
-            <p className={`${styles.hostedBy} ${styles.ml_dot20}`}>{props.hostedBy}</p>
-            <h4 className={`${styles.sub_title} ${styles.ml_dot20}`}>{props.subTitle}</h4>
-            <Up className={styles.center}>
+            <h3 className={`${styles.title} ${styles.ml_dot20}`}>{title}</h3>
+            <p className={`${styles.hostedBy} ${styles.ml_dot20}`}>{hostedBy}</p>
+            <h4 className={`${styles.sub_title} ${styles.ml_dot20}`}>{subTitle}</h4>
+            <Up className={styles.center} aria-label="Upload">
                 <i className={`${styles.ico} ${styles.upload_ico}`}></i>
             </Up>
         </CardContainer>

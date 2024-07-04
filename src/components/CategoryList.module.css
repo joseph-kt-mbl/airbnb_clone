@@ -3,13 +3,16 @@
     align-items: center;
     position: relative;
     margin: 1rem;
-  }
+    margin-top: 0;
+    background-color: #fff;
+    box-shadow: 0 4px 4px -4px rgba(0, 0, 0, 0.2);
+}
   
   .scrollContainer {
     display: flex;
     overflow-x: auto;
     scroll-behavior: smooth;
-    padding: 1rem 0;
+    padding: .5rem 0;
   }
   
   .scrollContainer::-webkit-scrollbar {

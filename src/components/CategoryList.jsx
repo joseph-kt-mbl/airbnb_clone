@@ -208,10 +208,25 @@ const CategoryList = () => {
   const [activeCategory, setActiveCategory] = useState(0);
   const [atStart, setAtStart] = useState(true);
   const [atEnd, setAtEnd] = useState(false);
+  const [scrollTop, setScrollTop] = useState(0);
 
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollTop = window.scrollY || document.documentElement.scrollTop;
+      setScrollTop(currentScrollTop);
+    };
+
+    
+
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
   const scroll = (direction) => {
     if (scrollRef.current) {
-      const scrollAmount = direction === 'left' ? -150 : 150;
+      const scrollAmount = direction === 'left' ? -400 : 300;
       scrollRef.current.scrollBy({ left: scrollAmount, behavior: 'smooth' });
     }
   };
@@ -239,7 +254,7 @@ const CategoryList = () => {
   }, []);
 
   return (
-    <div className={styles.container}>
+    <div className={`${styles.container} sticky zi999 ${scrollTop === 0 ?'top25vh':'top13vh'}`}>
       {!atStart && <div className={`${styles.gradient} ${styles.gradientLeft}`} />}
       {!atStart && (
         <button className={`${styles.scrollButton} ${styles.scrollButtonLeft}`} onClick={() => scroll('left')}>
