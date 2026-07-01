@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import styles from './Navbar.module.css';
-import airbnbLogo from 'C:/Users/user/Desktop/airbnb_clone/public/airbnb_logo.png';
-import airbnbLogoResponsive from 'C:/Users/user/Desktop/airbnb_clone/public/airbnb_logo_responsive.png';
+import airbnbLogo from './../../../public/airbnb_logo.png';
+import airbnbLogoResponsive from './../../../public/airbnb_logo_responsive.png';
 import profile from './../../../public/profile.png';
 import language from './../../../public/internet.png';
 import Capsule from './Capsule/Capsule';
